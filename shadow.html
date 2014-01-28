@@ -13,7 +13,34 @@
 		<input id="foo" type="range">
 		<input id="bar" type="range" class="custom">
 
-		<button id="play-button">Play</button>
+		<button id="play-button" onclick="alert('w')">Play</button>
+
+		<video controls></video>
+
+		<div id="example2">
+			<span>Hello</span>
+			<span>World</span>
+		</div>
+		<script>
+			var x = '<script>function foo() {' + 
+				'console.log("=======");' +
+				'console.dir(arguments);' +
+				'console.dir(this);' +
+				'console.log("=======");}</\//script>';
+			var container = document.querySelector('#example2');
+			var root1 = container.webkitCreateShadowRoot();
+			var root2 = container.webkitCreateShadowRoot();
+			var test = 'sdasdsadas';
+			root1.innerHTML = '<div>Root 1 FTW</div><content select="span"></content>';
+			root2.innerHTML = '<div onclick="console.dir(this);">Root 2 FTW</div><shadow></shadow>';
+		</script>
+
+		<div id="foo1">FOO</div>
+		<script>
+			var foo = document.querySelector('#foo1');
+			var shadowFoo = foo.webkitCreateShadowRoot();
+			shadowFoo.innerHTML = '<div>Hello <content></content></div>';
+		</script>
 
 		<script src="./shadow.js" type="text/javascript"></script>
 	</body>
