@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Inserting content into the Shadow DOM</title>
+	</head>
+	<body>
+		<div>
+			<h1>Insertion Points</h1>
+			<template id="shadow">
+				<div class="shadow-container">
+					<h1>
+						Hello <content select=".world"></content>
+						from <content select=".location"></content>
+					</h1>
+					<h2>Other Locations:</h2>
+					<div><content select="span"></content></div>
+					<h2>Other Stuff:</h2>
+					<div><content select="*"></content></div>
+				</div>
+			</template>
+			<div id="shadow-host">
+				<span class="world">Mundo</span>
+				<span class="location">Nueva York</span>
+				<span>Bogota</span>
+				<span>San Francisco</span>
+				<span>New Jersey</span>
+				<div>this is other stuff</div>
+			</div>
+
+			<script>
+				var shadowHost = document.querySelector('#shadow-host'),
+					shadowRoot = shadowHost.createShadowRoot(),
+					template = document.querySelector('#shadow');
+
+				shadowRoot.appendChild(template.content.cloneNode(true));
+			</script>
+		</div>
+	</body>
+</html>

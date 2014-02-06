@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Creating a Shadow DOM</title>
+	</head>
+	<body>
+		<div>
+			<h1>Let's explore the Shadow DOM</h1>
+			<input id="foo" type="range">
+		</div>
+		<div>
+			<h2>My Own Shadow DOM</h2>
+			<template id="shadow">
+				<div class="shadow-container">
+					Hello Shadow!
+				</div>
+			</template>
+			<div id="shadow-host">
+				Hello World!
+			</div>
+			<script>
+				var shadowHost = document.querySelector('#shadow-host'),
+					shadowRoot = shadowHost.createShadowRoot(),
+					template = document.querySelector('#shadow');
+
+				shadowRoot.appendChild(template.content.cloneNode(true));
+				
+			</script>
+		</div>
+	</body>
+</html>

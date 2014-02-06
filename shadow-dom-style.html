@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Styling a Shadow DOM</title>
+		<style type="text/css">
+			h1 {
+				text-decoration: underline;
+			}
+			#shadow-host {
+				border-color: #f00;
+			}
+			#shadow-host h1 {
+				color: #f00;
+			}
+			#shadow-host p {
+				color: #00f;
+			}
+			#shadow-host ^ h1 {
+				text-transform: uppercase;
+			}
+			/*
+			#shadow-host::part(shadow-header) {
+				color: tomato;
+			}
+			*/
+		</style>
+	</head>
+	<body>
+		<div>
+			<h1>DOM's H1 is so pretty</h1>
+			<template id="shadow" reset-style-inheritance>
+				<style type="text/css">
+					:host {
+						border: 1px solid #bada55;
+						border-radius: 5px;
+						padding: 10px;
+						transition: background-color 500ms ease-in-out;
+					}
+					/* will target shadow hosts with class of .another  */
+					:host(.another) {
+						color: #00f;
+					}
+					/* will target shadow hosts that are section elements */
+					:host(section) {
+						color: #0f0;
+					}
+					:host:hover {
+						background-color: #333;
+					}
+					::content p {
+						font-size: 1.5em;
+					}
+					h1[part='shadow-header'] {
+						color: #bada55;
+					}
+				</style>
+				<div class="shadow-container">
+					<h1 part="shadow-header">Shadow DOM's H1 is so #bada55</h1>
+					<content select="h1"></content>
+					<content select="*"></content>
+				</div>
+			</template>
+			<div id="shadow-host" class="">
+				<h1>Distributed Content!</h1>
+				<p>This is <em>the rest</em> of the content</p>
+				<p>Another Paragraph</p>
+			</div>
+			<script>
+				var shadowHost = document.querySelector('#shadow-host'),
+					shadowRoot = shadowHost.createShadowRoot(),
+					template = document.querySelector('#shadow');
+				// shadowRoot.applyAuthorStyles = true;
+				// shadowRoot.resetStyleInheritance = true;
+				shadowRoot.appendChild(template.content.cloneNode(true));
+				
+			</script>
+		</div>
+	</body>
+</html>
