@@ -3,6 +3,9 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Inserting content into the Shadow DOM</title>
+		<!--<link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">-->
+		<link rel="stylesheet" href="hlcss.css">
+		<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
 		<style type="text/css">
 			body {
 				color: #f00;
@@ -14,9 +17,10 @@
 		</style>
 	</head>
 	<body>
-		<div id="foo">
-			<h1>Insertion Points</h1>
-			<template id="shadow">
+		<div id="hl">
+			<div id="foo">
+				<h1>Insertion Points</h1>
+				<template id="shadow">
 				<style type="text/css">
 					::content * {
 						color: peru;
@@ -29,33 +33,48 @@
 					<h2>Hello <content select="span"></content>! From the Shadow DOM!</h2>
 					<content></content>
 				</div>
-			</template>
-			<div id="shadow-host">
-				<span id="span-distributed">Mundo</span>
-				<div id="div-distributed">This is the rest of the content</div>
+				</template>
+				<div id="shadow-host">
+					<span id="span-distributed">Mundo</span>
+					<div id="div-distributed">This is the rest of the content</div>
+				</div>
+
 			</div>
+			<script>
+				var shadowHost = document.querySelector('#shadow-host'),
+					shadowRoot = shadowHost.createShadowRoot(),
+					template = document.querySelector('#shadow');
 
+				shadowRoot.resetStyleInheritance = true;
+
+				console.log('========= Distributed Nodes =========');
+				shadowRoot.appendChild(template.content.cloneNode(true));
+				[].forEach.call(shadowRoot.querySelectorAll('content'), function (el) {
+					console.dir(el.getDistributedNodes());
+				});
+				console.log('========= Insertion Points =========');
+				console.dir(shadowHost.querySelector('span').getDestinationInsertionPoints());
+
+				document.querySelector('#foo').addEventListener('click', function (e) {
+					console.dir(e.target);
+				});	
+
+				console.log(globalFoo);
+			</script>
 		</div>
+
+
+		<!-- For the codez -->
+		<pre>
+			<code>
+			</code>
+		</pre>
+
 		<script>
-			var shadowHost = document.querySelector('#shadow-host'),
-				shadowRoot = shadowHost.createShadowRoot(),
-				template = document.querySelector('#shadow');
-
-			shadowRoot.resetStyleInheritance = true;
-
-			console.log('========= Distributed Nodes =========');
-			shadowRoot.appendChild(template.content.cloneNode(true));
-			[].forEach.call(shadowRoot.querySelectorAll('content'), function (el) {
-				console.dir(el.getDistributedNodes());
-			});
-			console.log('========= Insertion Points =========');
-			console.dir(shadowHost.querySelector('span').getDestinationInsertionPoints());
-
-			document.querySelector('#foo').addEventListener('click', function (e) {
-				console.dir(e.target);
-			});	
-
-			console.log(globalFoo);
+			document.querySelector('pre code').textContent = document.querySelector("#hl").innerHTML;
+			hljs.initHighlightingOnLoad();
 		</script>
+
+
 	</body>
 </html>
