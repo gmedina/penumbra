@@ -3,12 +3,9 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Inserting content into the Shadow DOM</title>
-		<!--<link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">-->
-		<link rel="stylesheet" href="hlcss.css">
-		<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
 	</head>
 	<body>
-		<div id="hl">
+		<div>
 			<h1>Insertion Points</h1>
 			<template id="shadow">
 				<div class="shadow-container">
@@ -36,16 +33,5 @@
 				});
 			</script>
 		</div>
-
-		<!-- For the codez -->
-		<pre>
-			<code>
-			</code>
-		</pre>
-
-		<script>
-			document.querySelector('pre code').textContent = document.querySelector("#hl").innerHTML;
-			hljs.initHighlightingOnLoad();
-		</script>
 	</body>
 </html>

@@ -3,9 +3,6 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Styling a Shadow DOM</title>
-		<!--<link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">-->
-		<link rel="stylesheet" href="hlcss.css">
-		<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
 		<style type="text/css">
 			h1 {
 				text-decoration: underline;
@@ -30,7 +27,7 @@
 		</style>
 	</head>
 	<body>
-		<div id="hl">
+		<div>
 			<h1>DOM's H1 is so pretty</h1>
 			<template id="shadow" reset-style-inheritance>
 				<style type="text/css">
@@ -79,15 +76,5 @@
 				
 			</script>
 		</div>
-		<!-- For the codez -->
-		<pre>
-			<code>
-			</code>
-		</pre>
-
-		<script>
-			document.querySelector('pre code').textContent = document.querySelector("#hl").innerHTML;
-			hljs.initHighlightingOnLoad();
-		</script>
 	</body>
 </html>

@@ -3,16 +3,13 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Creating a Shadow DOM</title>
-		<!--<link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">-->
-		<link rel="stylesheet" href="hlcss.css">
-		<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
 	</head>
 	<body>
 		<div>
 			<h1>Let's explore the Shadow DOM</h1>
 			<input id="foo" type="range">
 		</div>
-		<div id="hl">
+		<div>
 			<h2>My Own Shadow DOM</h2>
 			<template id="shadow">
 				<div class="shadow-container">Hello Shadow!</div>
@@ -27,15 +24,5 @@
 				
 			</script>
 		</div>
-		<!-- For the codez -->
-		<pre>
-			<code>
-			</code>
-		</pre>
-
-		<script>
-			document.querySelector('pre code').textContent = document.querySelector("#hl").innerHTML;
-			hljs.initHighlightingOnLoad();
-		</script>
 	</body>
 </html>
