@@ -1,12 +1,9 @@
 # Shadow DOM
-========
-
 Before anything else remember to turn on the following flags in Crome (chrome://flags)
 * Web Platform features
 * Experimental Javascript
 
 Also, in the dev tools, go to config and check the "Show Shadow DOM".
-
 ========
 
 The code here is messy, but might be interesting to play around with.
