@@ -3,9 +3,6 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Inserting content into the Shadow DOM</title>
-		<!--<link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">-->
-		<link rel="stylesheet" href="hlcss.css">
-		<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
 		<style type="text/css">
 			body {
 				color: #f00;
@@ -17,22 +14,22 @@
 		</style>
 	</head>
 	<body>
-		<div id="hl">
+		<div>
 			<div id="foo">
 				<h1>Insertion Points</h1>
 				<template id="shadow">
-				<style type="text/css">
-					::content * {
-						color: peru;
-					}
-				</style>
-				<script>
-					var globalFoo = "OMG GLOBAL NARWHAL";
-				</script>
-				<div class="shadow-container">
-					<h2>Hello <content select="span"></content>! From the Shadow DOM!</h2>
-					<content></content>
-				</div>
+					<style type="text/css">
+						::content * {
+							color: peru;
+						}
+					</style>
+					<script>
+						var globalFoo = "OMG GLOBAL NARWHAL";
+					</script>
+					<div class="shadow-container">
+						<h2>Hello <content select="span"></content>! From the Shadow DOM!</h2>
+						<content></content>
+					</div>
 				</template>
 				<div id="shadow-host">
 					<span id="span-distributed">Mundo</span>
@@ -62,19 +59,5 @@
 				console.log(globalFoo);
 			</script>
 		</div>
-
-
-		<!-- For the codez -->
-		<pre>
-			<code>
-			</code>
-		</pre>
-
-		<script>
-			document.querySelector('pre code').textContent = document.querySelector("#hl").innerHTML;
-			hljs.initHighlightingOnLoad();
-		</script>
-
-
 	</body>
 </html>
