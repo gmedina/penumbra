@@ -3,31 +3,29 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Inserting content into the Shadow DOM</title>
-		<style type="text/css">
-			body {
-				color: #f00;
-			}
-			#shadow-host {
-				border: 1px solid green;
-				padding: 10px;
-			}
-		</style>
+		<link href="style.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
 		<div>
 			<div id="foo">
 				<h1>Insertion Points</h1>
+				<p>
+					Open up the console in the dev tools. Check out the output. Also, click in the host, shadow root and distruted nodes and event retargeting!
+				</p>
 				<template id="shadow">
 					<style type="text/css">
-						::content * {
-							color: peru;
+						.shadow-container {
+							padding: 1em;
+							margin: 1em;
+							border: 2px solid cornflowerblue;
+							border-radius: 5px;
 						}
 					</style>
 					<script>
 						var globalFoo = "OMG GLOBAL NARWHAL";
 					</script>
 					<div class="shadow-container">
-						<h2>Hello <content select="span"></content>! From the Shadow DOM!</h2>
+						<h2>Hola <content select="span"></content>!</h2>
 						<content></content>
 					</div>
 				</template>

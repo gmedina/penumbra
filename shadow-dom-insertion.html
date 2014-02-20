@@ -3,20 +3,31 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Inserting content into the Shadow DOM</title>
+		<link href="style.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
 		<div>
 			<h1>Insertion Points</h1>
 			<template id="shadow">
+				<style type="text/css">
+					.shadow-container {
+						padding: 1em;
+						margin: 1em;
+						border: 2px solid cornflowerblue;
+						border-radius: 5px;
+					}
+				</style>
 				<div class="shadow-container">
-					<h2>Hello <content></content>! From the Shadow DOM!</h2>
+					<h2>Hello <content></content>!</h2>
 				</div>
 			</template>
-			<div id="shadow-host">Mundo</div>
+			<div id="shadow-host">
+				<span>Mundo</span>
+			</div>
 
 			<div>
 				<input type="text" id="shadow-host-content"/>
-				<button>Change Shadow DOM's Content</button>
+				<button>Change Shadow Host's Content, and it will be projected in the Shadow DOM!</button>
 			</div>
 
 			<script>
@@ -29,7 +40,7 @@
 				shadowRoot.appendChild(template.content.cloneNode(true));
 
 				changeContentBtn.addEventListener('click', function() {
-					shadowHost.innerHTML = changeContentInput.value;
+					shadowHost.querySelector('span').innerHTML = changeContentInput.value;
 				});
 			</script>
 		</div>

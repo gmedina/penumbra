@@ -3,56 +3,60 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Styling a Shadow DOM</title>
+		<link href="style.css" rel="stylesheet" type="text/css" />
 		<style type="text/css">
+			/* all h1's in the page should be underlined, except h1's in the shadow dom */
 			h1 {
 				text-decoration: underline;
 			}
-			#shadow-host {
-				border-color: #f00;
-			}
+			/* this will be a distributed node, it keeps it styles inside the Shadow DOM */
 			#shadow-host h1 {
-				color: #f00;
+				color: red;
 			}
-			#shadow-host p {
-				color: #00f;
-			}
+			/* this selector will cross the shadow dom boundary, and will uppercase the h1 inside the shadow dom */
 			#shadow-host ^ h1 {
 				text-transform: uppercase;
 			}
-			/*
+			/* this will style the h1 inside the shadow dom due to the part attribue of the h1 there */
 			#shadow-host::part(shadow-header) {
-				color: tomato;
+				color: #bada55;
 			}
-			*/
 		</style>
 	</head>
 	<body>
 		<div>
-			<h1>DOM's H1 is so pretty</h1>
+			<h1>H1s should be underline in the page! Such wow! Much Shadow! Very DOM</h1>
 			<template id="shadow" reset-style-inheritance>
 				<style type="text/css">
-					:host {
-						border: 1px solid #bada55;
+					.shadow-container {
+						padding: 1em;
+						margin: 1em;
+						border: 2px solid cornflowerblue;
 						border-radius: 5px;
-						padding: 10px;
+					}
+				</style>
+				<style type="text/css">
+					/* will try to style the shadow host, but this is less specific that style found in the page */
+					:host {
+						border-color: #bada55; /* this will not have enough specifity :(, not so bada55 :`( */
+						border-radius: 15px;
+						background-color: black;
 						transition: background-color 500ms ease-in-out;
 					}
-					/* will target shadow hosts with class of .another  */
+					/* will target shadow hosts with class of .another, to see in action simply add .another as a class to the host  */
 					:host(.another) {
-						color: #00f;
+						color: salmon;
 					}
-					/* will target shadow hosts that are section elements */
+					/* will target shadow hosts that are section elements, to see in action simpy change the host from a div to a container */
 					:host(section) {
-						color: #0f0;
+						color: papayawhip;
 					}
+					/* here is some hovering :) */
 					:host:hover {
-						background-color: #333;
+						background-color: dimgray;
 					}
 					::content p {
 						font-size: 1.5em;
-					}
-					h1[part='shadow-header'] {
-						color: #bada55;
 					}
 				</style>
 				<div class="shadow-container">
@@ -61,7 +65,7 @@
 					<content select="*"></content>
 				</div>
 			</template>
-			<div id="shadow-host" class="">
+			<div id="shadow-host" class="another">
 				<h1>Distributed Content!</h1>
 				<p>This is <em>the rest</em> of the content</p>
 				<p>Another Paragraph</p>

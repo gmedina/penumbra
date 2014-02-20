@@ -1,0 +1,8 @@
+/* this will override the :host selector inside the shadow dom */
+#shadow-host {
+	border: 3px double tomato;
+}
+/* distributed content will have a hot pink dotted border */
+#shadow-host * {
+	border: 1px dotted peru;
+}

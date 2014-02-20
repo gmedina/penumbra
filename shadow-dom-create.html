@@ -3,15 +3,20 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Creating a Shadow DOM</title>
+		<link href="style.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
+		<h1>Let's explore the Shadow DOM</h1>
 		<div>
-			<h1>Let's explore the Shadow DOM</h1>
-			<input id="foo" type="range">
-		</div>
-		<div>
-			<h2>My Own Shadow DOM</h2>
 			<template id="shadow">
+				<style type="text/css">
+					.shadow-container {
+						padding: 1em;
+						margin: 1em;
+						border: 2px solid cornflowerblue;
+						border-radius: 5px;
+					}
+				</style>
 				<div class="shadow-container">Hello Shadow!</div>
 			</template>
 			<div id="shadow-host">Hello World!</div>
