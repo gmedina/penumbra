@@ -16,4 +16,10 @@ The contents are just static files with some markup, css and js.
 * shadow-dom-style.html : New CSS selectors and styling
 * shadow-dom-javascript.html : How to traverse the Shadow DOM and a bit on event retargeting
 
+In every example you should be paying attention to the borders
+* double border: This is the shadow host!
+* solid border: This is the shadow root!
+* dotted border: This is distributed content!
+
+
 
